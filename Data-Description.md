@@ -10,10 +10,10 @@ The dataset is obtained from [Kaggle](https://www.kaggle.com/datasets/suchintika
 
 The dataset consists of statements tagged with one of the following seven mental health statuses:
 
-Normal
-Depression
-Suicidal
-Anxiety
-Stress
-Bi-Polar
-Personality Disorder
+* Normal
+* Depression
+* Suicidal
+* Anxiety
+* Stress
+* Bi-Polar
+* Personality Disorder
