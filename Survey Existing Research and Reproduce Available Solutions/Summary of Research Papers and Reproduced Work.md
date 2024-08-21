@@ -109,3 +109,5 @@ There are several limitations in the study. First, the sentiment analysis model,
 
 Due to the smaller dataset size, extracting a significant number of meaningful topics was challenging, and the topics identified had low frequencies.
 
+**csv files in this work can be found [here](https://drive.google.com/drive/folders/1sTBRzWehjHT5kPgOtlKseyAGowK_pq3a?usp=sharing).**
+
