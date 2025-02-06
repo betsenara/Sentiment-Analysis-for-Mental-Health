@@ -1,0 +1,19 @@
+# Use official Python slim image for AMD64
+FROM python:3.11-slim
+
+# Set working directory inside the container
+WORKDIR /app
+
+# Copy FastAPI project files
+COPY ./django_proj/myapp ./myapp
+COPY ./requirements.txt .
+
+# Install dependencies
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Expose FastAPI port
+EXPOSE 8000
+
+# Run FastAPI server
+CMD ["uvicorn", "myapp.fastapi:app", "--host", "0.0.0.0", "--port", "8000"]

@@ -1,0 +1,205 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:<AWS_REGION>:<AWS_ACCOUNT_ID>:task-definition/my-sent-analysis-app-task:7",
+    "containerDefinitions": [
+        {
+            "name": "django-app",
+            "image": "<AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com/<ECR_REPO_NAME1>:amd64",
+            "cpu": 512,
+            "memory": 2048,
+            "memoryReservation": 512,
+            "portMappings": [
+                {
+                    "containerPort": 8001,
+                    "hostPort": 8001,
+                    "protocol": "tcp",
+                    "name": "container-app-port",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                {
+                    "name": "POSTGRES_USER",
+                    "value": "<my_postgres_user>"
+                },
+                {
+                    "name": "DATABASE_URL",
+                    "value": "<MY_DATABASE_URL>"
+                },
+                {
+                    "name": "DB_PORT",
+                    "value": "5432"
+                },
+                {
+                    "name": "FASTAPI_URL",
+                    "value": "<FASTAPI_URL>"
+                },
+                {
+                    "name": "ALLOWED_HOSTS",
+                    "value": "<ALLOWED_HOSTS>"
+                },
+                {
+                    "name": "POSTGRES_PASSWORD",
+                    "value": "<my_postgres_password>"
+                },
+                {
+                    "name": "POSTGRES_DB",
+                    "value": "<my-database>"
+                },
+                {
+                    "name": "DB_HOST",
+                    "value": "<DB_HOST>"
+                },
+                {
+                    "name": "DEBUG",
+                    "value": "False"
+                }
+            ],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "ulimits": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/",
+                    "mode": "non-blocking",
+                    "awslogs-create-group": "true",
+                    "max-buffer-size": "25m",
+                    "awslogs-region": "<AWS_REGION>",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
+            "systemControls": []
+        },
+        {
+            "name": "fastapi-app",
+            "image": "<AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com/<ECR_REPO_NAME1>:amd64",
+            "cpu": 512,
+            "portMappings": [
+                {
+                    "containerPort": 8000,
+                    "hostPort": 8000,
+                    "protocol": "tcp",
+                    "name": "container-fastapi-port",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [
+                {
+                    "name": "POSTGRES_USER",
+                    "value": "<my_postgres_user>"
+                },
+                {
+                    "name": "DATABASE_URL",
+                    "value": "<MY_DATABASE_URL>"
+                },
+                {
+                    "name": "DB_PORT",
+                    "value": "5432"
+                },
+                {
+                    "name": "FASTAPI_URL",
+                    "value": "<FASTAPI_URL>"
+                },
+                {
+                    "name": "ALLOWED_HOSTS",
+                    "value": "<ALLOWED_HOSTS>"
+                },
+                {
+                    "name": "POSTGRES_PASSWORD",
+                    "value": "<my_postgres_password>"
+                },
+                {
+                    "name": "POSTGRES_DB",
+                    "value": "<my-database>"
+                },
+                {
+                    "name": "DB_HOST",
+                    "value": "<DB_HOST>"
+                },
+                {
+                    "name": "DEBUG",
+                    "value": "False"
+                }
+            ],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/",
+                    "mode": "non-blocking",
+                    "awslogs-create-group": "true",
+                    "max-buffer-size": "25m",
+                    "awslogs-region": "<AWS_REGION>",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
+            "systemControls": []
+        }
+    ],
+    "family": "my-sent-analysis-app-task",
+    "taskRoleArn": "arn:aws:iam:<AWS_ACCOUNT_ID>:role/ecs-fargate-task-role",
+    "executionRoleArn": "arnaws:iam::<AWS_ACCOUNT_ID>:role/ecs-fargate-execution-role",
+    "networkMode": "awsvpc",
+    "revision": 7,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.28"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "registeredAt": "2025-01-31T10:39:34.987000-08:00",
+    "registeredBy": "arn:aws:iam:<AWS_ACCOUNT_ID>:user/<IAMuser>",
+    "enableFaultInjection": false
+}

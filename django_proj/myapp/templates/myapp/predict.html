@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Health Prediction</title>
+    <link rel="stylesheet" href="{% static 'myapp/css/styles.css' %}">
+    <script>
+        function toggleDiagnosisField() {
+            const diagnosed = document.getElementById('diagnosed').value;
+            const diagnosisField = document.getElementById('diagnosis-field');
+            const warningMessage = document.getElementById('warning-message');
+
+            if (diagnosed === 'yes') {
+                diagnosisField.style.display = 'block';
+                warningMessage.style.display = 'block';
+            } else if (diagnosed === 'normal') {
+                diagnosisField.style.display = 'none';
+                warningMessage.style.display = 'block';
+            } else {
+                diagnosisField.style.display = 'none';
+                warningMessage.style.display = 'none';
+            }
+        }
+    </script>
+</head>
+<body>
+<h1>Mental Health Category Prediction</h1>
+
+<h2>Model Information</h2>
+<p>
+    <strong>Model 1:</strong> Trained on a small dataset of Reddit posts with professionally diagnosed labels. Categories include:
+    Anxiety, Bipolar, Depression, Normal, Personality Disorder, Stress, and Suicidal.
+</p>
+<p>
+    <strong>Model 2:</strong> Trained on a larger dataset of Reddit posts with user-assigned labels based on subreddits. Categories include:
+    Anxiety, Borderline Personality Disorder (BDP), Bipolar, and Depression.
+</p>
+
+<!-- Form for Prediction -->
+{% if prediction is None %}
+<form method="post" action="/predict/">
+    {% csrf_token %}
+    <h3>Select a Model</h3>
+    <label for="model_choice">Choose a model:</label>
+    <select name="model_choice" id="model_choice" required>
+        <option value="1">Model 1: Diagnosed Data</option>
+        <option value="2">Model 2: Community-Sourced Data</option>
+    </select>
+
+
+    <h3>Share Your Experience</h3>
+    <p>
+        Share your thoughts, feelings, or experiences as you would in an online community. 
+        You can describe a situation, challenge, or thought that’s been on your mind—whether 
+        it’s about stress, emotions, or anything affecting your mental state. 
+        Imagine you’re sharing an experience or emotion you’d like others to understand.
+    </p>
+
+    <label for="text">Enter your text:</label>
+    <textarea name="text" id="text" rows="4" cols="50" placeholder="Enter your text here..." required></textarea>
+    <button type="submit">Predict</button>
+</form>
+{% endif %}
+
+<!-- Show Prediction Result -->
+{% if prediction is not None %}
+    <h2>Prediction Result: {{ prediction }}</h2>
+    <p style="font-size: 0.8em; color: gray;"></p>
+        Disclaimer: This analysis is based on patterns in the text and is not a substitute for professional advice.
+        Please consult a licensed mental health professional if you're experiencing distress.
+    </p>
+
+<!-- Form for Diagnosis -->
+<form method="post" action="/predict/">
+    {% csrf_token %}
+    <h3>Additional Question</h3>
+
+    <label for="diagnosed">Are you diagnosed with any mental illnesses?</label>
+    <select name="diagnosed" id="diagnosed" onchange="toggleDiagnosisField()" required>
+        <option value="">--Select--</option>
+        <option value="no">No</option>
+        <option value="yes">Yes</option>
+        <option value="normal">Diagnosed as Normal</option>
+    </select>
+
+    <br><br>
+
+    <p id="warning-message" style="color: blue; display: none;">
+        Your text and diagnosis will be saved anonymously for further refinement of the model.
+    </p>
+
+    <div id="diagnosis-field" style="display: none;">
+        <label for="diagnosis">What is the diagnosis?</label>
+        <select name="diagnosis" id="diagnosis">
+            <option value="">--Select--</option>
+            <option value="Anxiety">Anxiety</option>
+            <option value="BDP">Borderline Personality Disorder (BDP)</option>
+            <option value="Bipolar">Bipolar</option>
+            <option value="Depression">Depression</option>
+            <option value="Personality Disorder">Personality Disorder</option>
+            <option value="Stress">Stress</option>
+            <option value="Suicidal">Suicidal</option>
+        </select>
+    </div>
+
+    <br><br>
+    <button type="submit">Save Diagnosis</button>
+</form>
+{% endif %}
+
+<!-- Show Errors -->
+{% if error %}
+<h2 style="color: red;">Error: {{ error }}</h2>
+{% endif %}
+</body>
+</html>
