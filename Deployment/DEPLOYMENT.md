@@ -1,4 +1,4 @@
-# 🚀 Deployment Guide for Sentiment Analysis
+#  Deployment Guide for Sentiment Analysis
 This guide explains how to **build**, **push**, and **deploy** the Docker container to AWS.
 
 ## 1️ Build the Docker Image
