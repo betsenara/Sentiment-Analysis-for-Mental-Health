@@ -15,7 +15,7 @@ Multiple models were developed, including classical machine learning models (Log
 ├── Data              # Datasets and descriptions
 ├── Deployment        # Docker and AWS deployment files
 ├── Notebooks         # Jupyter notebooks for data analysis and model training
-├── django_proj       # Django and FastAPI web application
+├── django_proj       # Django and FastAPI web application, trained ML models
 ```
 
 ## Web Interface
