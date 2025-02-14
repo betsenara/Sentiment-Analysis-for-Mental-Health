@@ -18,32 +18,55 @@ Mental health issues are increasing, and early detection can significantly impac
 - **Label Distribution Analysis**: Visualizing class imbalance
 - **Word Clouds**: Identifying common words for each category
 - **Text Length Analysis**: Understanding word count distributions per class
-- **TF-IDF Feature Importance**: Identifying key terms contributing to classification
 - Cosine similarity analysis with Word2Vec
 
 ## 4. Model Selection and Training
 
-**Hardware Used:** CPU with 24 cores
+
 ### **Baseline Machine Learning Models**
 - Logistic Regression
-- XGBoost
-- Stacking Classifier (combining Logistic Regression and XGBoost)
+- Random Forest Classifier
+- XGBoost Classifier
+- Stacking Classifier (combining Logistic Regression, Linear SVC, Naive Bayes, Random Forest, and XGBoost)
+
+**Hardware Used:** CPU with 24 cores
 
 ### **Deep Learning Model**
-
 * Fine-tuned BERT model trained separately on both datasets
+  
+**Hardware Used:** NVIDIA RTX GPU 4070 
 
-**Hardware Used:** GPU 4070 CUDA
 
 
 ### **Evaluation Metrics**
 - Accuracy, Precision, Recall, F1-score
 - Confusion Matrix for error analysis
 
+### Model Performance Comparison
+
+| Model                | Accuracy | Precision | Recall | F1-Score |
+|----------------------|----------|-----------|--------|----------|
+| Logistic Regression  | 0.74     | 0.75      | 0.74   | 0.74     |
+| Linear SVC           | 0.74     | 0.75      | 0.74   | 0.74     |
+| XGBoost              | 0.76     | 0.76      | 0.76   | 0.76     |
+| Random Forest        | 0.73     | 0.73      | 0.73   | 0.73     |
+| Stacking Classifier  | 0.77     | 0.77      | 0.77   | 0.77     |
+| Fine-Tuned BERT      | 0.83     | 0.83      | 0.83   | 0.83     |
+
 ## 5. Model Deployment
 ### **Containerization with Docker**
 - **FastAPI container**: Handles ML model inference
 - **Django container**: Frontend for user interaction
+
+### **Local Deployment**
+- **Generate local images**:
+```
+docker-compose build --no-cache
+```
+- **Run locally**: 
+```
+docker-compose up
+```
 
 ### **Cloud Deployment on AWS**
 - **ECS (Fargate)** for scalable inference
