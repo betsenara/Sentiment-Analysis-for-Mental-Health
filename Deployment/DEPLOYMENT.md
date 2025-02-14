@@ -41,7 +41,9 @@ aws ecs execute-command --cluster <MY-CLUSTER-NAMES> --task <TASK_ID> --containe
 aws ecs update-service --cluster my-cluster --service my-service --force-new-deployment
 ```
 ## 8. Create an Application Load Balancer (ALB)
-After applying application load balancer the app can be reached from the following link:
+Apply application load balancer.
+
+The app can be reached from the following link:
 
 [Visit Mental Health Detection App](http://my-ALB-1071292174.us-east-2.elb.amazonaws.com/predict)
 
