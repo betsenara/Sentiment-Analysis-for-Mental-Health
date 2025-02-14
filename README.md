@@ -31,6 +31,12 @@ Multiple models were developed, including classical machine learning models (Log
     &nbsp;&nbsp;&nbsp;&nbsp;3. **Django displays the result** to the user.\
     &nbsp;&nbsp;&nbsp;&nbsp;4. **User diagnosis** is collected and stored in AWS RDS.\
 
+### Access the Web Application
+
+The app can be reached from the following link:
+
+[Visit Mental Health Detection App](http://my-ALB-1071292174.us-east-2.elb.amazonaws.com/predict)
+
 ## Future Improvements
 *  Implement real-time feedback loops for continuous model improvement
 
