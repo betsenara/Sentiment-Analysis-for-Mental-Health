@@ -4,9 +4,25 @@
 
 This project classifies user-written texts into different mental health categories using machine learning and deep learning models. Two datasets were used:
 
-* Small dataset (~50k rows) labeled by professionals.
+#### Small dataset (~50k rows) labeled by professionals.
 
-* Large dataset (~600k rows) labeled based on subreddit categories.
+**Features**
+The dataset consists of statements tagged with one of the following seven mental health statuses:
+
+* Normal
+* Depression
+* Suicidal
+* Anxiety
+* Stress
+* Bi-Polar
+* Personality Disorder
+
+#### Large dataset (~600k rows) labeled based on following subreddit categories:
+
+* Depression
+* Anxiety
+* Bi-Polar
+* BPD
 
 Multiple models were developed, including classical machine learning models (Logistic Regression, XGBoost, Stacking) and a fine-tuned BERT model. The fine-tuned BERT model was deployed using Docker and AWS ECS (Fargate) with a Django + FastAPI web interface. User input and diagnosis data are stored in an AWS RDS database for future improvements.
 
